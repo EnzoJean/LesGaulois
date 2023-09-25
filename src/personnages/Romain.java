@@ -3,20 +3,21 @@ package personnages;
 public class Romain {
 	private String nom;
 	private int force;
-	
+
 	public Romain(String nom, int force) {
+		assert (force > 0);
 		this.nom = nom;
 		this.force = force;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
-	
+
 	public int getForce() {
-		return force;	
+		return force;
 	}
-	
+
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + " »");
 	}
@@ -24,19 +25,22 @@ public class Romain {
 	private String prendreParole() {
 		return "Le romain " + nom + " : ";
 	}
-	
+
 	public void recevoirCoup(int forceCoup) {
+		assert (force > 0);
+		int forceDepart = force;
 		force -= forceCoup;
 		if (force > 0) {
 			parler("Aïe");
 		} else {
 			parler("J'abandonne...");
 		}
+		assert (force < forceDepart);
 	}
-	
+
 	public static void main(String[] args) {
-		Romain bob = new Romain("Bob", 5);
-		bob.parler("Bonjour!");
-		bob.recevoirCoup(10);
+		Romain minus = new Romain("Minus", 6);
+		minus.parler("Bonjour!");
+		minus.recevoirCoup(10);
 	}
 }
